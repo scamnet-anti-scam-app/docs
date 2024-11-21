@@ -11,61 +11,10 @@
     "https"
   ],
   "paths": {
-        "/evaluate_email": {
-      "get": {
-        "summary": "Evaluate Email",
-        "description": "Checks if given email address is in a data breach and returns a detailed response about the breach status",
-        "parameters": [
-          {
-            "name": "X-Api-Key",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "client",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Email evaluated successfully",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "success": {
-                  "type": "boolean"
-                },
-                "error": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/evaluate_phone_number": {
       "get": {
         "summary": "Evaluate Phone Number",
-        "description": "Checks if given phone number is in ScamNet's whitelist/graylist/blacklist",
+        "description": "Checks if given phone number is in ScamNet's database. Set isReport to true if you are reporting a phone number (Only check is performed if isReport is omitted).",
         "parameters": [
           {
             "name": "X-Api-Key",
@@ -84,11 +33,17 @@
             "in": "query",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "isReport",
+            "in": "query",
+            "required": false,
+            "type": "bool"
           }
         ],
         "responses": {
           "200": {
-            "description": "Phone number evaluated successfully",
+            "description": "Success",
             "schema": {
               "type": "object",
               "properties": {
@@ -134,66 +89,10 @@
         }
       }
     },
-    "/report_phone_number": {
-      "post": {
-        "summary": "Report Phone Number",
-        "description": "Allows your users to report to ScamNet's managed & centralised database",
-        "parameters": [
-          {
-            "name": "X-Api-Key",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "client",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "phoneNumber",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Phone number reported successfully",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "success": {
-                  "type": "boolean"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "success": {
-                  "type": "boolean"
-                },
-                "error": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/evaluate_website": {
       "get": {
         "summary": "Evaluate Website",
-        "description": "Checks for scam indicators in the given website using our state of the art scam detection engine (Rule + ML Based)",
+        "description": "Checks for scam indicators in the given website using our state of the art scam detection engine",
         "parameters": [
           {
             "name": "X-Api-Key",
@@ -216,7 +115,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Website evaluated successfully",
+            "description": "Success",
             "schema": {
               "type": "object",
               "properties": {
