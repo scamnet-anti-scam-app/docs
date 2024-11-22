@@ -38,7 +38,7 @@
             "name": "isReport",
             "in": "query",
             "required": false,
-            "type": "bool"
+            "type": "boolean"
           }
         ],
         "responses": {
