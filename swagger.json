@@ -14,7 +14,7 @@
     "/evaluate_phone_number": {
       "get": {
         "summary": "Evaluate Phone Number",
-        "description": "Checks if given phone number is in ScamNet's database. Set isReport to true if you are reporting a phone number (Only check is performed if isReport is omitted).",
+        "description": "Checks if given phone number is in ScamNet's database. Set isReport to \"true\" if you are reporting a phone number.",
         "parameters": [
           {
             "name": "X-Api-Key",
@@ -38,7 +38,7 @@
             "name": "isReport",
             "in": "query",
             "required": false,
-            "type": "boolean"
+            "type": "string"
           }
         ],
         "responses": {
